@@ -6,7 +6,7 @@ export default class HorizBarChart extends React.Component {
     const bars = data.map( ( d, ndx) => {
       return (
         <rect key={ndx} x={xScale( d.name)} y={yScale( d.total)}
-          width={xScale.bandwidth()}
+          width={xScale.bandwidth()-1}
           height={height - yScale(d.total)}/>
       );
     });
