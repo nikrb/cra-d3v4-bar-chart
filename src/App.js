@@ -65,7 +65,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="button-bar">
-          sort
+          Sort
           <button type="button" onClick={this.alphaSort}
             className={this.state.tooltip_sortby==="alpha"?"button-active":""} >
             Alpha
