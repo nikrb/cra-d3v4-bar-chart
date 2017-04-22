@@ -56,6 +56,9 @@ button:focus {
 .chart rect {
   fill: steelblue;
 }
+.chart rect:hover {
+  fill: yellow;
+}
 
 .chart text {
   fill: black;
