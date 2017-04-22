@@ -3,16 +3,17 @@ import React, { Component } from 'react';
 import './App.css';
 import * as d3 from 'd3';
 import {all, filtered} from './data';
-import HorizBarChart from './HorizBarChart';
+import BarChart from './BarChart';
+import XYAxis from './XYAxis';
 
 class App extends Component {
   state = {
     data: filtered
   };
   render = () => {
-    const width = 600;
-    const height = 400;
-    // const barWidth = width/this.state.data.length;
+    const margin = {top: 20, right: 30, bottom: 30, left: 40};
+    const width = 960 - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
 
     const yScale = d3.scaleLinear()
       .domain( [0, d3.max( this.state.data, d => d.total)])
@@ -22,11 +23,12 @@ class App extends Component {
       .domain( this.state.data.map( (d) => d.name))
       .range( [0, width]);
 
+      // <BarChart height={height} translate={translate}
+      //   data={this.state.data} xScale={xScale} yScale={yScale} />
     return (
       <div className="App">
-        <svg className="chart" width={width} height={height} >
-          <HorizBarChart height={height}
-            data={this.state.data} xScale={xScale} yScale={yScale} />
+        <svg className="chart" width={960} height={500} >
+          <XYAxis settings={margin} scale={xScale} height={500} />
         </svg>
       </div>
     );
