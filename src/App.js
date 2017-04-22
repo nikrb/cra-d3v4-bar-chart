@@ -8,11 +8,31 @@ import XYAxis from './XYAxis';
 
 class App extends Component {
   state = {
-    data: all,
+    data: all.sort( (a, b) => {
+      if( a.total > b.total) return 1;
+      else if( a.total < b.total) return -1;
+      return 0;
+    }),
     tooltip_text: "",
     tooltip_visible: false,
     tooltip_x :0,
     tooltip_y : 0
+  };
+  alphaSort = () => {
+    const d = this.state.data.sort( (a,b) => {
+      if( a.name > b.name) return 1;
+      else if( a.name < b.name) return -1;
+      return 0;
+    });
+    this.setState( { data: d});
+  };
+  totalSort = () => {
+    const d = this.state.data.sort( (a,b) => {
+      if( a.total > b.total) return 1;
+      else if( a.total < b.total) return -1;
+      return 0;
+    });
+    this.setState( {data: d});
   };
   handleMouseEnter = (datarow, x, y) => {
     this.setState( { tooltip_text: datarow.name+":"+datarow.total,
@@ -40,8 +60,14 @@ class App extends Component {
       top: this.state.tooltip_y, left: this.state.tooltip_x
     };
     const chart_translate = `translate( ${margin.left}, ${margin.top})`;
+
     return (
       <div className="App">
+        <div className="button-bar">
+          sort
+          <button type="button" onClick={this.alphaSort} >Alpha</button>
+          <button type="button" onClick={this.totalSort} >Total</button>
+        </div>
         <svg className="chart" width={container.width} height={container.height} >
           <BarChart height={height} translate={chart_translate}
             data={this.state.data} xScale={xScale} yScale={yScale}
