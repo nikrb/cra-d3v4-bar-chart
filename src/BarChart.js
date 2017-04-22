@@ -1,11 +1,15 @@
 import React from 'react';
 
 export default class BarChart extends React.Component {
-  handleMouseOver = (e) => {
-
+  handleMouseEnter = function( data, e){
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.handleMouseEnter( data, e.clientX, e.clientY);
   };
   handleMouseLeave = (e) => {
-
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.handleMouseLeave();
   };
   render = () => {
     const {data, xScale, yScale, height} = this.props;
@@ -14,7 +18,7 @@ export default class BarChart extends React.Component {
         <rect key={ndx} x={xScale( d.name)} y={yScale( d.total)}
           width={xScale.bandwidth()-1}
           height={height - yScale(d.total)}
-          onMouseOver={this.handleMouseOver}
+          onMouseEnter={this.handleMouseEnter.bind( this, d)}
           onMouseLeave={this.handleMouseLeave}/>
       );
     });
