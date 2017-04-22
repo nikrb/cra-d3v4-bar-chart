@@ -19,6 +19,8 @@ class App extends Component {
     tooltip_y : 0,
     tooltip_sortby: "total"
   };
+  componentDidMount = () => {
+  };
   alphaSort = () => {
     const d = this.state.data.sort( (a,b) => {
       if( a.name > b.name) return 1;
@@ -61,7 +63,6 @@ class App extends Component {
       top: this.state.tooltip_y, left: this.state.tooltip_x
     };
     const chart_translate = `translate( ${margin.left}, ${margin.top})`;
-
     return (
       <div className="App">
         <div className="button-bar">

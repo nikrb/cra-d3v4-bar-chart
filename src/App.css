@@ -34,7 +34,7 @@
 };
 
 .button-active {
-  box-shadow: 0px 0px 10px red;
+  box-shadow: 0px 0px 10px orange;
 }
 button {
   margin: 10px;
@@ -43,9 +43,11 @@ button {
   background: linear-gradient( to top, limegreen, lime); /* lawngreen, springgreen); */
   border-radius: 10px;
 }
-
+button:hover {
+  box-shadow: 0px 0px 10px yellow;
+}
 button:focus {
-  outline: none;
+  outline: 0;
   box-shadow: 0px 0px 10px orange;
 }
 
