@@ -10,12 +10,13 @@ class App extends Component {
     data: filtered
   };
   render = () => {
-    const width = 400;
-    const barHeight = 20;
+    const width = 600;
+    const height = 400;
+    const barWidth = width/this.state.data.length;
 
-    const x = d3.scaleLinear()
+    const yScale = d3.scaleLinear()
       .domain( [0, d3.max( this.state.data, d => d.total)])
-      .range( [0, width]);
+      .range( [height, 0]);
 
     return (
       <div className="App">
@@ -26,8 +27,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <svg className="chart" width={width} height={barHeight * this.state.data.length} >
-          <HorizBarChart barHeight={barHeight} data={this.state.data} xScale={x} />
+        <svg className="chart" width={width} height={height} >
+          <HorizBarChart height={height} barWidth={barWidth} data={this.state.data} yScale={yScale} />
         </svg>
       </div>
     );
