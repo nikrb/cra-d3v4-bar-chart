@@ -25,13 +25,12 @@ class App extends Component {
       .range( [0, width]);
 
     const chart_translate = `translate( ${margin.left}, ${margin.top})`;
-    const axis_translate = `translate( ${margin.left}, ${container.height-margin.bottom} )`;
     return (
       <div className="App">
         <svg className="chart" width={container.width} height={container.height} >
           <BarChart height={height} translate={chart_translate}
             data={this.state.data} xScale={xScale} yScale={yScale} />
-          <XYAxis scale={xScale} translate={axis_translate} />
+          <XYAxis scales={{xScale,yScale}} margins={margin} height={container.height} />
         </svg>
       </div>
     );

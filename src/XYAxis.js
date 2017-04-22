@@ -1,20 +1,18 @@
 import React from 'react';
-import * as d3 from 'd3';
+import Axis from './Axis';
 
 export default class XYAxis extends React.Component {
-  componentDidMount = () => {
-    this.renderAxis();
-  };
-  componentDidUpdate = () => {
-    this.renderAxis();
-  };
-  renderAxis = () => {
-    var haxis = d3.axisBottom( this.props.scale)
-    // FIXME: this.refs.axis isn't working here
-    haxis( d3.select( '.axis'));
-  };
-
   render = () => {
-    return <g className="axis" transform={this.props.translate} ></g>;
+    const {margins, height} = this.props;
+    const xaxis_translate = `translate( ${margins.left}, ${height-margins.bottom} )`;
+    const yaxis_translate = `translate( ${margins.left}, ${margins.top} )`;
+    return (
+      <g>
+        <Axis className="axis" orient="horiz" 
+          translate={xaxis_translate} scale={this.props.scales.xScale} />
+        <Axis className="axis" orient="vert"
+          translate={yaxis_translate} scale={this.props.scales.yScale} />
+      </g>
+    );
   };
 }
