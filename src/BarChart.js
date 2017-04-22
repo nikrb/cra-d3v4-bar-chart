@@ -10,17 +10,16 @@ export default class HorizBarChart extends React.Component {
           height={height - yScale(d.total)}/>
       );
     });
-    const text = data.map( (d, ndx) => {
-      return (
-        <text key={ndx} x={xScale( d.name)+xScale.bandwidth()} y={yScale( d.total)+3} dy={"1em"} >
-          {d.name}
-        </text>
-      );
-    });
+    // const text = data.map( (d, ndx) => {
+    //   return (
+    //     <text key={ndx} x={xScale( d.name)+xScale.bandwidth()} y={yScale( d.total)+3} dy={"1em"} >
+    //       {d.name}
+    //     </text>
+    //   );
+    // });
     return (
       <g transform={this.props.translate}>
         {bars}
-        {text}
       </g>
     );
   };
