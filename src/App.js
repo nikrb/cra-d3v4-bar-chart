@@ -16,7 +16,8 @@ class App extends Component {
     tooltip_text: "",
     tooltip_visible: false,
     tooltip_x :0,
-    tooltip_y : 0
+    tooltip_y : 0,
+    tooltip_sortby: "total"
   };
   alphaSort = () => {
     const d = this.state.data.sort( (a,b) => {
@@ -24,7 +25,7 @@ class App extends Component {
       else if( a.name < b.name) return -1;
       return 0;
     });
-    this.setState( { data: d});
+    this.setState( { data: d, tooltip_sortby: "alpha"});
   };
   totalSort = () => {
     const d = this.state.data.sort( (a,b) => {
@@ -32,7 +33,7 @@ class App extends Component {
       else if( a.total < b.total) return -1;
       return 0;
     });
-    this.setState( {data: d});
+    this.setState( {data: d, tooltip_sortby: "total"});
   };
   handleMouseEnter = (datarow, x, y) => {
     this.setState( { tooltip_text: datarow.name+":"+datarow.total,
@@ -65,8 +66,14 @@ class App extends Component {
       <div className="App">
         <div className="button-bar">
           sort
-          <button type="button" onClick={this.alphaSort} >Alpha</button>
-          <button type="button" onClick={this.totalSort} >Total</button>
+          <button type="button" onClick={this.alphaSort}
+            className={this.state.tooltip_sortby==="alpha"?"button-active":""} >
+            Alpha
+          </button>
+          <button type="button" onClick={this.totalSort}
+            className={this.state.tooltip_sortby==="total"?"button-active":""} >
+            Total
+          </button>
         </div>
         <svg className="chart" width={container.width} height={container.height} >
           <BarChart height={height} translate={chart_translate}
