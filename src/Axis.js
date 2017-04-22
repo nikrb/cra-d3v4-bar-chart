@@ -20,7 +20,10 @@ export default class Axis extends React.Component {
   };
 
   render = () => {
-    const id = this.props.orient;
-    return <g className={id} transform={this.props.translate} ></g>;
+    let cn = `${this.props.orient}`;
+    if( this.props.orient === "horiz"){
+      cn += ` axis_centre`;
+    }
+    return <g className={cn} transform={this.props.translate} ></g>;
   };
 }
