@@ -17,7 +17,6 @@ export default class HorizBarChart extends React.Component {
         </text>
       );
     });
-
     return (
       <g transform={this.props.translate}>
         {bars}

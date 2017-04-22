@@ -11,9 +11,10 @@ class App extends Component {
     data: filtered
   };
   render = () => {
+    const container = { width: 600, height: 400};
     const margin = {top: 20, right: 30, bottom: 30, left: 40};
-    const width = 960 - margin.left - margin.right;
-    const height = 500 - margin.top - margin.bottom;
+    const width = container.width - margin.left - margin.right;
+    const height = container.height - margin.top - margin.bottom;
 
     const yScale = d3.scaleLinear()
       .domain( [0, d3.max( this.state.data, d => d.total)])
@@ -23,12 +24,14 @@ class App extends Component {
       .domain( this.state.data.map( (d) => d.name))
       .range( [0, width]);
 
-      // <BarChart height={height} translate={translate}
-      //   data={this.state.data} xScale={xScale} yScale={yScale} />
+    const chart_translate = `translate( ${margin.left}, ${margin.top})`;
+    const axis_translate = `translate( ${margin.left}, ${container.height-margin.bottom} )`;
     return (
       <div className="App">
-        <svg className="chart" width={960} height={500} >
-          <XYAxis settings={margin} scale={xScale} height={500} />
+        <svg className="chart" width={container.width} height={container.height} >
+          <BarChart height={height} translate={chart_translate}
+            data={this.state.data} xScale={xScale} yScale={yScale} />
+          <XYAxis scale={xScale} translate={axis_translate} />
         </svg>
       </div>
     );
