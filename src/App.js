@@ -8,7 +8,7 @@ import XYAxis from './XYAxis';
 
 class App extends Component {
   state = {
-    data: filtered,
+    data: all,
     tooltip_text: "",
     tooltip_visible: false,
     tooltip_x :0,
@@ -17,13 +17,13 @@ class App extends Component {
   handleMouseEnter = (datarow, x, y) => {
     this.setState( { tooltip_text: datarow.name+":"+datarow.total,
       tooltip_visible:true,
-      tooltip_x: x, tooltip_y: y});
+      tooltip_x: x, tooltip_y: y-24});
   };
   handleMouseLeave = () => {
     this.setState( { tooltip_visible: false})
   };
   render = () => {
-    const container = { width: 600, height: 400};
+    const container = { width: 960, height: 500};
     const margin = {top: 20, right: 30, bottom: 30, left: 40};
     const width = container.width - margin.left - margin.right;
     const height = container.height - margin.top - margin.bottom;
@@ -35,9 +35,9 @@ class App extends Component {
     const xScale = d3.scaleBand()
       .domain( this.state.data.map( (d) => d.name))
       .range( [0, width]);
-      
+
     const tooltip = {display: (this.state.tooltip_visible)?"block":"none",
-      top: margin.top, left: width/2
+      top: this.state.tooltip_y, left: this.state.tooltip_x
     };
     const chart_translate = `translate( ${margin.left}, ${margin.top})`;
     return (
