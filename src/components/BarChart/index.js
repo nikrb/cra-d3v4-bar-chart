@@ -2,6 +2,7 @@
 import React from 'react';
 import * as d3 from 'd3';
 import XYAxis from './XYAxis';
+import './style.css';
 
 export default class BarChart extends React.Component {
   handleMouseEnter = function( data, e){
