@@ -1,4 +1,11 @@
-// data format: { label,value}
+/**
+ * usage:
+  <BarChart height={container.height} width={container.width} data={chart_data}
+    handleMouseEnter={this.handleMouseEnter} handleMouseLeave={this.handleMouseLeave} />
+  mouse handlers report individual bar activity
+  handleMouseEnter( {label,value}, x, y)
+ * data - format: { label,value}
+ */
 import React from 'react';
 import * as d3 from 'd3';
 import XYAxis from './XYAxis';

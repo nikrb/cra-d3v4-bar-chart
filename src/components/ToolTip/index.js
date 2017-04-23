@@ -1,3 +1,8 @@
+/**
+ * usage:
+  <ToolTip tip_text={this.state.tooltip_text} pos={tooltip} />
+  where pos is visibility, x, y
+ */
 import React from 'react';
 import './style.css';
 
